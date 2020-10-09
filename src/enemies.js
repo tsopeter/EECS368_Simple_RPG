@@ -168,6 +168,7 @@ function brawler(){
 	
 	this.setup = (x, y, map_obj) => {
 		this.attribute.setup(5, 1, x, y, map_obj, 3);
+		this.counter = 0;
 	};
 	
 	this.attack = () => {
@@ -175,7 +176,13 @@ function brawler(){
 	};
 	
 	this.move = () => {
-		this.attribute.move();
+		this.counter++;
+		if(this.counter % 2 == 0){
+			this.attribute.move();
+		}
+		if(this.counter > 20){
+			this.counter = 0;
+		}
 	};
 	
 	this.die = () => {
@@ -193,6 +200,8 @@ function brawler(){
 	this.dropexp = () => {
 		return this.attribute.dropExp;
 	};
+	
+	this.counter;
 }
 
 function enemyUpdate(map_obj, cur_x, cur_y, next_x, next_y){
