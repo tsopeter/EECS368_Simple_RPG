@@ -1,0 +1,87 @@
+
+main = function(){
+	console.log("Program start");
+	map_setup();
+	player_rep.setup();
+	map_to_screen(orig);
+	
+
+	console.log("Program End");
+}
+
+function map_setup(){
+	/*	set constant textures	*/
+	stoneTile = new tiles();
+	stoneTile.set_name('stone');
+	stoneTile.set_tile(tile_stone);
+	stoneTile.set_collision(1);
+	
+	nullTile = new tiles();
+	nullTile.set_name('null');
+	
+	playerTile = new tiles();
+	playerTile.set_name('player');
+	playerTile.set_tile(player_model);
+
+	/*	generate textures 	*/
+	let grassTile = randomTextureGenerator(grass, 'grass', 5);
+	
+	let desertTile = randomTextureGenerator(sand, 'sand', 5);
+	
+	let marsTile = randomTextureGenerator(mars, 'mars', 5);
+	
+	
+	/*	generate Map	*/
+	orig = randomMap(desertTile, 0, [0, 1, 1, 0]);
+	
+	let map2 = randomMap(grassTile, 1, [0, 1, 0, 1]);
+	
+	let map3 = randomMap(grassTile, 1, [1, 1, 0, 1]);
+	
+	let map4 = randomMap(marsTile, 1, [1, 0, 1, 1]);
+	
+	/* 	add enemy to map */
+	/*
+	let tileSlime = new tiles();
+	tileSlime.set_container(new slime());
+	tileSlime.get_container().setup(5, 5, orig);
+	addEnemyTile(tileSlime);
+	*/
+	/* generate enemies */
+	let tileSlime = new Array;
+	for(var i = 0; i < 2; i++){
+		tileSlime.push(new tiles());
+		tileSlime[i].set_container(new slime());
+		tileSlime[i].get_container().setup(i+1, i+1, orig);
+		tileSlime[i].set_tile(tile_slime);
+		tileSlime[i].set_collision(1);
+		
+		/*	add to tile	*/
+		addEnemyTile(tileSlime[i]);
+	}
+	
+	let tileBrawler = new tiles();
+	tileBrawler.set_container(new brawler());
+	tileBrawler.get_container().setup(5, 5, map3);
+	tileBrawler.set_tile(tile_brawler);
+	tileBrawler.set_collision(1);
+	
+	addEnemyTile(tileBrawler);
+	
+	/*	link map	*/
+	link(orig, map2, 0);
+	link(map2, map3, 0);
+	link(orig, map4, 3);
+	
+	/* enable any debuggers */
+	enable_attack_button_debug();
+	enable_game_end_button_debug();
+}
+
+function addEnemyTile(tile_object){
+	let cur_map = tile_object.get_container().return_map();
+	let arr = cur_map.e_return_map();
+	arr[tile_object.get_container().attribute.y][tile_object.get_container().attribute.x] = tile_object;
+	cur_map.e_load_map(arr);
+}
+
