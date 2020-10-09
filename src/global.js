@@ -20,3 +20,5 @@ let gameFlag = true;
 
 let gameRunFlag = true;
 
+let userTurn = false;
+

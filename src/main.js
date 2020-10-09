@@ -1,10 +1,11 @@
 
 main = function(){
 	console.log("Program start");
-	map_setup();
-	player_rep.setup();
-	map_to_screen(orig);
+	//map_setup();
+	//player_rep.setup();
+	//map_to_screen(orig);
 	
+	runGame();
 
 	console.log("Program End");
 }
@@ -76,6 +77,9 @@ function map_setup(){
 	/* enable any debuggers */
 	enable_attack_button_debug();
 	enable_game_end_button_debug();
+	
+	player_rep.setup();
+	map_to_screen(orig);
 }
 
 function addEnemyTile(tile_object){

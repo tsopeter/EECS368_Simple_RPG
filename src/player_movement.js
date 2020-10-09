@@ -109,9 +109,6 @@ function player(){
 		
 		/*	update the map with new player coord */
 		let refresh_map = orig.m_return_map();
-		enemyFunctionsAtCurrentMap();
-		checkForEnemyStatus();
-		checkPlayerStatus();
 		//console.log(refresh_map);
 		//console.log("X: " + x + " Y: " + y);
 		
@@ -145,31 +142,31 @@ function player(){
 		cur_player_pos_y = y;
 		this.x = x;
 		this.y = y;
-		
 		map_to_screen(orig);
 	};
 		
 	document.addEventListener('keydown', function keypress_handler(event){
-		//console.log('keypress_handler_called');
-		if(event.key == 'w'){
-			player_rep.move(cur_player_pos_x, cur_player_pos_y - 1);
-		}
-		else if(event.key == 'a'){
-			player_rep.move(cur_player_pos_x - 1, cur_player_pos_y);
-		}	
-		else if(event.key == 's'){
-			player_rep.move(cur_player_pos_x, cur_player_pos_y + 1);
-		}
-		else if(event.key == 'd'){
-			player_rep.move(cur_player_pos_x + 1, cur_player_pos_y);
-		}
-		else if(event.key == 'Enter'){
-			console.log('attack called');
-			player_rep.attack();
-		}
-		else{
-			console.log("invalid key press");
-		}
+			userTurn = true;
+			//console.log('keypress_handler_called');
+			if(event.key == 'w'){
+				player_rep.move(cur_player_pos_x, cur_player_pos_y - 1);
+			}
+			else if(event.key == 'a'){
+				player_rep.move(cur_player_pos_x - 1, cur_player_pos_y);
+			}	
+			else if(event.key == 's'){
+				player_rep.move(cur_player_pos_x, cur_player_pos_y + 1);
+			}
+			else if(event.key == 'd'){
+				player_rep.move(cur_player_pos_x + 1, cur_player_pos_y);
+			}
+			else if(event.key == 'Enter'){
+				console.log('attack called');
+				player_rep.attack();
+			}
+			else{
+				console.log("invalid key press");
+			}
 	});
 	
 	this.health = 20;
@@ -206,13 +203,7 @@ function player(){
 			}		
 		}
 		
-		enemyFunctionsAtCurrentMap();
-		checkForEnemyStatus();
-		checkPlayerStatus();
-		
 		orig.e_return_map(attack_map);
-		
-		map_to_screen(orig);
 	};
 	
 	this.takeDamage = (damage) => {
