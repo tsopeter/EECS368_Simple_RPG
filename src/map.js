@@ -141,7 +141,8 @@ function map(x, y){
 					}
 				}
 			}
-			this.exist = 0;			
+			this.exist = 0;
+			this.generate_enemies();			
 		};		
 }
 
