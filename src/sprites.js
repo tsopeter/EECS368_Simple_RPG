@@ -23,10 +23,6 @@ function addExp(expr){
 	player_rep.experience += expr;
 }
 
-let healthTile;
-
-let expTile;
-
 const health_tile = [[undefined, 'darksalmon', 'darksalmon', 'darksalmon', undefined],
 		       [undefined, 'azure', 'azure', 'azure', undefined],
 		       ['azure', 'red', 'red', 'red', 'azure'],

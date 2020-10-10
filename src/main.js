@@ -68,7 +68,7 @@ function map_setup(){
 	
 	
 	/*	generate sprite tiles */
-	healthTile = new tiles();
+	let healthTile = new tiles();
 	healthTile.set_name('health_potion');
 	healthTile.set_tile(health_tile);
 	healthTile.set_collision(1);
@@ -77,7 +77,7 @@ function map_setup(){
 	
 	addEnemyTile(healthTile);
 	
-	expTile = new tiles();
+	let expTile = new tiles();
 	expTile.set_name('exp_potion');
 	expTile.set_tile(exp_tile);
 	expTile.set_collision(1);
