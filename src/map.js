@@ -7,7 +7,7 @@ function map(x, y){
 		this.x = x;
 		this.y = y;
 		
-		this.exist: 0;
+		this.exist;
 		
 		/*	holds linked maps */
 		this.linked_map = new Array(4);
@@ -85,6 +85,13 @@ function map(x, y){
 			if(typeof(this.enemy_store) == 'undefined'){
 				return;
 			}
+			
+			/* do not generate when undefined is in array */
+			for(var i = 0; i < this.enemy_store.length; i++){
+				if(typeof(this.enemy_store[i][0]) == 'undefined' || typeof(this.enemy_store[i][1]) == 'undefined'){
+					return;
+				}
+			}
 		
 			let arg0 = Math.floor(Math.random() * this.enemy_store.length);
 			let free_space = new Array;
@@ -98,16 +105,19 @@ function map(x, y){
 					}
 				}
 			}
+			console.log(free_space[0]);
 			/* generate the enemies */
 			while(arg0 >= 0){
 				/* set up the enemy */
 				let place_random = Math.floor(Math.random() * free_space.length);
+				console.log(place_random);
 
 				/* create a new enemy tile */
 				let temp_enemy = new tiles();
 					
 				/* set behavior object to tile container */
-				temp_enemy.set_container(new this.enemy_store[arg0][0]());
+				//console.log(this.enemy_store[arg0][0]);
+				temp_enemy.set_container(new (this.enemy_store[arg0][1])());
 				
 				let i = free_space[place_random][0];
 				let k = free_space[place_random][1];
@@ -119,13 +129,15 @@ function map(x, y){
 				free_space.splice(place_random, 1);
 				
 				/* set the tile */
-				temp_enemy.set_tile(this.enemy_store[arg0][1]);
+				temp_enemy.set_tile(this.enemy_store[arg0][0]);
 				
 				/* set collision */
 				temp_enemy.set_collision(1);
 				
 				/* add Enemy to map */
 				addEnemyTile(temp_enemy);
+				
+				arg0--;
 			};
 			if(arg0 != 0){
 				this.exist = 1;

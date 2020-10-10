@@ -20,5 +20,6 @@ function link(master_map, slave_map, dir){
 	
 function map_change(slave_map){
 	orig = slave_map;
+	orig.checkEnemyExist();
 }
 	

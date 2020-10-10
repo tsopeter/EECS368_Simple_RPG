@@ -5,6 +5,9 @@
 /**
 *	@This holds basic enemy attributes
 */
+
+let enemyTypes = [[tile_slime, slime], [tile_slime, slime], [tile_brawler, brawler]];
+
 function basic_enemy_attributes(){
 	this.x;
 	this.y;

@@ -46,6 +46,7 @@ function map_setup(){
 	addEnemyTile(tileSlime);
 	*/
 	/* generate enemies */
+	/*
 	let tileSlime = new Array;
 	for(var i = 0; i < 2; i++){
 		tileSlime.push(new tiles());
@@ -55,9 +56,9 @@ function map_setup(){
 		tileSlime[i].set_collision(1);
 		
 		/*	add to tile	*/
-		addEnemyTile(tileSlime[i]);
-	}
-	
+		//addEnemyTile(tileSlime[i]);
+	//}
+	/*
 	let tileBrawler = new tiles();
 	tileBrawler.set_container(new brawler());
 	tileBrawler.get_container().setup(5, 5, map3);
@@ -65,7 +66,16 @@ function map_setup(){
 	tileBrawler.set_collision(1);
 	
 	addEnemyTile(tileBrawler);
+	*/
 	
+	/* auto generate enemies */
+	/* if loaded enemies, then first initalize the enemies */
+	orig.load_enemy(enemyTypes);
+	orig.checkEnemyExist();
+	
+	map4.load_enemy(enemyTypes);
+	map4.checkEnemyExist();
+
 	
 	/*	generate sprite tiles */
 	let healthTile = new tiles();

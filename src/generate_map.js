@@ -47,6 +47,12 @@ function randomMap(tile_type, type, include_border){
 	output.m_load_map(undefined_map());
 	output.e_load_map(undefined_map());
 	
+	/*	generate undefined for enemy_store array */
+	output.load_enemy(undefined_array());
+	
+	/* tell map that there are no enemies */
+	output.exist = 0;
+	
 	return output;
 }
 
@@ -55,6 +61,18 @@ function undefined_map(){
 	for(var i = 0; i < map_size; i++){
 		let temp_array = new Array;
 		for(var k = 0; k < map_size; k++){
+			temp_array.push(undefined);
+		}
+		output.push(temp_array);
+	}
+	return output;
+}
+
+function undefined_array(){
+	let output = new Array;
+	for(var i = 0; i < 2; i++){
+		let temp_array = new Array;
+		for(var k = 0; k < 2; k++){
 			temp_array.push(undefined);
 		}
 		output.push(temp_array);
