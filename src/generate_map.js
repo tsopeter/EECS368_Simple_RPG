@@ -13,6 +13,9 @@ function randomMap(tile_type, type, include_border){
 	/* create a new map object */
 	let output = new map(map_size, map_size);
 	
+	/* load the tile_type into background_tile */
+	output.load_background_tile(tile_type);
+	
 	/* fill in the background of the map object */
 	let primary_array = new Array;
 	for(var i = 0; i < map_size; i++){

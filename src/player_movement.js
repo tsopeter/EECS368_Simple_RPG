@@ -3,6 +3,8 @@ function player(){
 	this.setup = () => {
 		cur_player_pos_x = 4;
 		cur_player_pos_y = 4;
+		prev_player_pos_x = cur_player_pos_x;
+		prev_player_pos_y = cur_player_pos_y;
 		this.x = cur_player_pos_x;
 		this.y = cur_player_pos_y;
 		
@@ -51,6 +53,8 @@ function player(){
 			console.log("same area");
 			return;
 		}
+		prev_player_pos_x = cur_player_pos_x;
+		prev_player_pos_y = cur_player_pos_y;
 		/*check to see out of bounds and change map accordingly */
 		let switched_flag = false
 		if(x < 0 && typeof(orig.return_linked_map()[1]) != 'undefined'){
@@ -68,6 +72,7 @@ function player(){
 			
 			/*update player move to righthand side */
 			cur_player_pos_x = map_size - 1;
+			prev_player_pos_x = cur_player_pos_x;
 			x = cur_player_pos_x;
 			switched_flag = true;
 		}
@@ -85,6 +90,7 @@ function player(){
 			map_change(orig.return_linked_map()[3]);
 			
 			cur_player_pos_x = 0;
+			prev_player_pos_x = 0;
 			x = cur_player_pos_x;
 			switched_flag = true;
 		}
@@ -102,6 +108,7 @@ function player(){
 			map_change(orig.return_linked_map()[0]);
 			
 			cur_player_pos_y = map_size - 1;
+			prev_player_pos_y = cur_player_pos_y;
 			y = cur_player_pos_y;
 			switched_flag = true;
 		}
@@ -119,6 +126,7 @@ function player(){
 			map_change(orig.return_linked_map()[2]);
 			
 			cur_player_pos_y = 0;
+			prev_player_pos_y = 0;
 			y = cur_player_pos_y;
 			switched_flag = true;
 		}
@@ -158,6 +166,10 @@ function player(){
 		cur_player_pos_y = y;
 		this.x = x;
 		this.y = y;
+		
+		console.log('prev_coord_(x, y): ' + prev_player_pos_x + ', ' + prev_player_pos_y);
+		console.log('curr_coord_(x, y): ' + cur_player_pos_x + ', ' + cur_player_pos_y);
+		
 		map_to_screen(orig);
 	};
 		

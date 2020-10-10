@@ -7,6 +7,17 @@ function map(x, y){
 		this.x = x;
 		this.y = y;
 		
+		/* holds background tile for optimized rendering */
+		this.background_tile;
+		
+		this.load_background_tile = (xs) => {
+			this.background_tile = xs;
+		};
+		
+		this.return_background_tile = () => {
+			return this.background_tile
+		};
+		
 		/* check to see if there are enemy tiles */
 		this.exist;
 		
@@ -29,6 +40,21 @@ function map(x, y){
 		
 		/*	this stores the enemy objects */
 		this.enemy_store;
+		
+		this.true_enemy_store;
+		
+		this.load_true_enemy_store = (xs) => {
+			this.true_enemy_store = xs.map(x => x);
+		};
+		
+		this.return_true_enemy_store = () => {
+			if(typeof(this.true_enemy_store) != 'undefined'){
+				return [...(this.true_enemy_store)];
+			}
+			else{
+				return undefined;
+			}
+		};
 		
 		
 		/*	give the map object a array */
@@ -93,6 +119,8 @@ function map(x, y){
 					return;
 				}
 			}
+			this.true_enemy_store = new Array;
+			
 			
 			/* randomly select a starting point of the enemy array */
 			let arg0 = Math.floor(Math.random() * this.enemy_store.length);
@@ -145,6 +173,8 @@ function map(x, y){
 				
 				/* add Enemy to map */
 				addEnemyTile(temp_enemy);
+				
+				this.true_enemy_store.push(temp_enemy);
 				
 				/* decrement to next enemy */
 				arg0--;

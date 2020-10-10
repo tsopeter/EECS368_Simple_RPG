@@ -11,6 +11,9 @@ let enemyTypes = [[tile_slime, slime], [tile_slime, slime], [tile_brawler, brawl
 function basic_enemy_attributes(){
 	this.x;
 	this.y;
+	
+	this.prev_x;
+	this.prev_y;
 
 	this.fullHealth;
 	this.health;
@@ -80,6 +83,10 @@ function basic_enemy_attributes(){
 		/*	update the map	*/
 		enemyUpdate(this.map_obj, this.x, this.y, x, y);
 		
+		/* load previous coord */
+		this.prev_x = this.x;
+		this.prev_y = this.y;
+		
 		/*	update coordinate */
 		this.x = x;
 		this.y = y;
@@ -122,6 +129,8 @@ function basic_enemy_attributes(){
 		this.damage = damage;
 		this.x = x;
 		this.y = y;
+		this.prev_x = x;
+		this.prev_y = y;
 		this.map_obj = map_obj;
 		this.dropExp = experience;
 		this.n_name = name;
@@ -241,26 +250,35 @@ function brawler(){
 }
 
 function enemyUpdate(map_obj, cur_x, cur_y, next_x, next_y){
-	let e_map = map_obj.e_return_map();
+	console.log('enemyUpdate Called');
+	let e_map = orig.e_return_map();
 	
 	let temp_tile = e_map[cur_y][cur_x];
 	e_map[next_y][next_x] = temp_tile;
 	e_map[cur_y][cur_x] = undefined;
-	map_obj.e_load_map(e_map);
+	orig.e_load_map(e_map);
 }
 
 function checkForEnemyStatus(){
 	let e_map = orig.e_return_map();
-	console.log(e_map);
-	for(var i = 0; i < map_size; i++){
-		for(var k = 0; k < map_size; k++){
-			if(typeof(e_map[i][k]) != 'undefined'){
-				if(e_map[i][k].get_container().attribute.health <= 0){
-					player_rep.experience += e_map[i][k].get_container().dropexp();
-					e_map[i][k] = undefined;
-				}
+	if(typeof(orig.return_true_enemy_store()) == 'undefined'){
+		return;
+	}
+	let enemy_cache = orig.return_true_enemy_store();
+	for(var i = 0; i < enemy_cache.length; i++){
+		if(typeof(enemy_cache[i]) != 'undefined'){
+			if(enemy_cache[i].get_container().attribute.health <= 0){
+				let x = enemy_cache[i].get_container().attribute.x;
+				let y = enemy_cache[i].get_container().attribute.y;
+				player_rep.experience += enemy_cache[i].get_container().dropexp();
+				translate(orig.return_background_tile(),  10 * x,  10 * y);
+				
+				e_map[y][x] = undefined;
+				enemy_cache[i] = undefined;
 			}
 		}
 	}
 	orig.e_load_map(e_map);
+	orig.load_true_enemy_store(enemy_cache);
+	
 }

@@ -1,6 +1,9 @@
 let cur_player_pos_x = 0;
 let cur_player_pos_y = 0;
 
+let prev_player_pos_x = 0;
+let prev_player_pos_y = 0;
+
 
 let player_rep = new player();
 
@@ -21,4 +24,6 @@ let gameRunFlag = true;
 let userTurn = false;
 
 let player_death_alert = true;
+
+let first_pass_called = false;
 

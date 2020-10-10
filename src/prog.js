@@ -16,13 +16,13 @@ function playerside(){
 	enemyFunctionsAtCurrentMap();
 	checkForEnemyStatus();
 	checkPlayerStatus();
-	console.log('called_user_turn');
+	//console.log('called_user_turn');
 	drawInfo();
 	map_to_screen(orig);
 }
 
 function enemyside(){
-	console.log('called_enemy_turn');
+	//console.log('called_enemy_turn');
 	
 	/* check before calling computational heavy function */
 	let check_map = orig.e_return_map();
