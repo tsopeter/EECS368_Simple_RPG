@@ -1,4 +1,4 @@
-let grass = ['green', 'green', 'darkgreen', 'darkgreen', 'green', 'green', 'yellow'];
+let grass = ['green', 'green', 'darkgreen', 'darkgreen', 'green', 'green', 'yellowgreen'];
 
 let sand = ['bisque', 'blanchedalmond','blanchedalmond','blanchedalmond'];
 
