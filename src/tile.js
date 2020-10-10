@@ -44,11 +44,11 @@ function tiles(){
 	};
 }
 /*	CONSTANT TILES	*/
-const tile_stone = [['grey', 'dimgray', 'silver', 'gainsboro', 'lightgray'],
+const tile_stone = [[undefined, 'dimgray', 'silver', 'gainsboro', undefined],
 			 ['dimgray', 'grey', 'silver', 'dimgray', 'grey'],
 			 ['gray', 'dimgray', 'silver', 'silver', 'dimgray'],
 			 ['gray', 'grey', 'dimgrey','gainsboro', 'grey'],
-			 ['grey', 'dimgray', 'silver', 'gainsboro', 'lightgray']];
+			 [undefined, 'dimgray', 'silver', 'gainsboro', undefined]];
 			 
 			 
 const tile_slime = [[undefined, 'aqua', 'aqua', 'aqua', undefined],
