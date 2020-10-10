@@ -25,3 +25,10 @@ function enable_game_end_button_debug(){
 		gameRunFlag = false;
 	});
 }
+
+function enable_level_up_debug(){
+	document.querySelector("#level_up").addEventListener('click', () => {
+		player_rep.experience = player_rep.levelExp;
+		checkPlayerStatus();
+	});
+}

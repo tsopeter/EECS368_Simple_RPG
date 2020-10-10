@@ -16,7 +16,12 @@ function item_attributes(){
 }
 
 function addHealth(health){
-	player_rep.health += health;
+	if(player_rep.health + health >= player_rep.fullHealth){
+		player_rep.health = player_rep.fullHealth
+	}
+	else{
+		player_rep.health += health;
+	}
 }
 
 function addExp(expr){

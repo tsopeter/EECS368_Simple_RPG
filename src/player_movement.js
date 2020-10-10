@@ -5,6 +5,9 @@ function player(){
 		cur_player_pos_y = 4;
 		this.x = cur_player_pos_x;
 		this.y = cur_player_pos_y;
+		
+		this.level = 1;
+		this.levelExp = 10;
 		this.experience = 0;
 		
 		/*	set all tiles to null tiles except cur */
@@ -21,6 +24,18 @@ function player(){
 			}
 			primary_array.push(secondary_array);
 		}
+		
+		this.itemStorage = new playerStorage();
+		this.toolStorage = new playerStorage();
+		
+		this.itemStorage.setup();
+		this.toolStorage.setup();
+		
+		this.fullHealth = 20;
+		this.health = 20;
+		this.damage = 2;
+		this.armor = 0;
+		
 		document.getElementById('health').innerText = 'Health: ' + this.health;
 		document.getElementById('exp').innerText = 'XP: ' + this.experience;
 		orig.m_load_map(primary_array);
@@ -168,9 +183,9 @@ function player(){
 				console.log("invalid key press");
 			}
 	});
-	
-	this.health = 20;
-	this.damage = 2;
+	this.fullHealth;
+	this.health;
+	this.damage;
 	this.attack = () => {
 		let attack_map = orig.e_return_map();
 		console.log(attack_map);
@@ -213,7 +228,46 @@ function player(){
 	this.x = cur_player_pos_x;
 	this.y = cur_player_pos_y;
 	
+	this.level;
+	this.levelExp;
 	this.experience;
+	
+	this.armor;
+	
+	this.itemStorage;
+	this.toolStorage;
+	
+	this.levelup = () => {
+		if(this.experience >= this.levelExp){
+			this.level++;
+			alert('You leveled up. You are now level' + this.level);
+			this.levelExp = Math.floor(this.levelExp * 1.6);
+			this.fullHealth = Math.floor(this.fullHealth * 1.7);
+			this.health = this.fullHealth;
+			this.experience = 0;
+			this.damage = Math.ceil(this.damage * 1.3);
+		}
+	}
+}
+
+function playerStorage(){
+	this.storage_array;
+	
+	this.setup = () => {
+		this.storage_array = new Array;
+	};
+	
+	this.addItem = (item) => {
+		this.storage_array.push(item);
+	};
+	
+	this.useItem = (idx) => {
+		return this.storage_array[idx];
+	};
+	
+	this.dropItem = (idx) => {
+		this.storage_array.splice(idx, 1);
+	};
 	
 }
 
@@ -231,6 +285,8 @@ function check_for_valid_step(textureElement){
 
 function checkPlayerStatus(){
 	/* update viewport */
+	player_rep.levelup();
+	document.querySelector("#level").innerText = "LEVEL: " + player_rep.level;
 	document.querySelector('#health').innerText = 'Health: ' + player_rep.health;
 	document.querySelector('#exp').innerText = 'XP: ' + player_rep.experience;
 	if(player_rep.health <= 0){

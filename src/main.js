@@ -104,6 +104,7 @@ function map_setup(){
 	/* enable any debuggers */
 	enable_attack_button_debug();
 	enable_game_end_button_debug();
+	enable_level_up_debug();
 	
 	player_rep.setup();
 	map_to_screen(orig);
