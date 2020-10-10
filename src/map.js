@@ -7,6 +7,8 @@ function map(x, y){
 		this.x = x;
 		this.y = y;
 		
+		this.exist: 0;
+		
 		/*	holds linked maps */
 		this.linked_map = new Array(4);
 		
@@ -23,6 +25,9 @@ function map(x, y){
 		
 		/*	this is the enemy map */
 		this.e_map;
+		
+		/*	this stores the enemy objects */
+		this.enemy_store;
 		
 		
 		/*	give the map object a array */
@@ -62,6 +67,76 @@ function map(x, y){
 			maily used for traversal */
 		this.return_linked_map = () => {
 			return this.linked_map;
-		};				
+		};
+		
+		/*	load the enemy onto the enemy_store */
+		// example storage format: [[tile_enemy, container_obj], [tile_enemy, container_obj]]
+		this.load_enemy = (xs) => {
+			this.enemy_store = xs.map(x => x.map(z => z));
+		};
+		
+		this.generate_enemies = () => {
+			/* do not generate when enemies are still present */
+			if(this.exist != 0){
+				return;
+			}
+		
+			let arg0 = Math.floor(Math.random() * this.enemy_store.length);
+			let free_space = new Array;
+			for(var i = 0; i < map_size; i++){
+				for(var k = 0; k < map_size; k++){
+					if(!(check_for_valid_step(this.e_map[y_rand][x_rand])) && !(check_for_valid_step(this.b_map[y_rand][x_rand]))){
+						let tuple = new Array;
+						tuple.push(i);
+						tuple.push(k);
+						free_space.push(tuple);
+					}
+				}
+			}
+			/* generate the enemies */
+			while(arg0 >= 0){
+				/* set up the enemy */
+				let place_random = Math.floor(Math.random() * free_space.length);
+
+				/* create a new enemy tile */
+				let temp_enemy = new tiles();
+					
+				/* set behavior object to tile container */
+				temp_enemy.set_container(new this.enemy_store[arg0][0]());
+				
+				let i = free_space[place_random][0];
+				let k = free_space[place_random][1];
+				
+				/* set up the enemy */
+				temp_enemy.get_container().setup(k, i, this);
+				
+				/* splice out the space as no longer free */
+				free_space.splice(place_random, 1);
+				
+				/* set the tile */
+				temp_enemy.set_tile(this.enemy_store[arg0][1]);
+				
+				/* set collision */
+				temp_enemy.set_collision(1);
+				
+				/* add Enemy to map */
+				addEnemyTile(temp_enemy);
+			};
+			if(arg0 != 0){
+				this.exist = 1;
+			}
+		};
+		/* call this function on every map change */
+		this.checkEnemyExist =	() => {
+			for(var i = 0; i < map_size; i++){
+				for(var k = 0; k < map_size; k++){
+					if(typeof(this.e_map[i][k]) != 'undefined'){
+						this.exist = 1;
+						return;
+					}
+				}
+			}
+			this.exist = 0;			
+		};		
 }
 
