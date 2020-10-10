@@ -27,3 +27,7 @@ let player_death_alert = true;
 
 let first_pass_called = false;
 
+let rendering = false;
+
+let moving = false;
+

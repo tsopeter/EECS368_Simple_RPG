@@ -97,7 +97,7 @@ function map(x, y){
 		};
 		
 		/*	load the enemy onto the enemy_store */
-		// example storage format: [[tile_enemy, container_obj], [tile_enemy, container_obj]]
+		// example storage format: [[tile_enemy, container_obj, function, value], [tile_enemy, container_obj, function, value]]
 		this.load_enemy = (xs) => {
 			this.enemy_store = xs.map(x => x.map(z => z));
 		};
@@ -160,7 +160,7 @@ function map(x, y){
 				let k = free_space[place_random][1];
 				
 				/* set up the enemy */
-				temp_enemy.get_container().setup(k, i, this, (this.enemy_store[arg0][1]).name);
+				temp_enemy.get_container().setup(k, i, this, this.enemy_store[arg0][2], this.enemy_store[arg0][3]);
 				
 				/* splice out the space as no longer free */
 				free_space.splice(place_random, 1);

@@ -78,6 +78,7 @@ function map_setup(){
 
 	
 	/*	generate sprite tiles */
+	/*
 	let healthTile = new tiles();
 	healthTile.set_name('health_potion');
 	healthTile.set_tile(health_tile);
@@ -104,6 +105,7 @@ function map_setup(){
 	addEnemyTile(armorTile);
 	
 	addEnemyTile(expTile);
+	*/
 	
 	/*	link map	*/
 	link(orig, map2, 0);

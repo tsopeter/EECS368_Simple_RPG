@@ -5,8 +5,8 @@
 /**
 *	@This holds basic enemy attributes
 */
-
-let enemyTypes = [[tile_slime, slime], [tile_slime, slime], [tile_brawler, brawler]];
+// format [[tile, object, function, val], [tile, object, function, val]]
+let enemyTypes = [[tile_slime, slime, 0, 0], [tile_slime, slime, 0, 0], [tile_brawler, brawler, 0, 0], [health_tile, properties, addHealth, 4]];
 
 function basic_enemy_attributes(){
 	this.x;
@@ -81,7 +81,6 @@ function basic_enemy_attributes(){
 			return;
 		}
 		/*	update the map	*/
-		enemyUpdate(this.map_obj, this.x, this.y, x, y);
 		
 		/* load previous coord */
 		this.prev_x = this.x;
@@ -90,6 +89,8 @@ function basic_enemy_attributes(){
 		/*	update coordinate */
 		this.x = x;
 		this.y = y;
+		enemyUpdate(this.map_obj, this.prev_x, this.prev_y, this.x, this.y);
+		
 		
 	};
 	
@@ -123,7 +124,7 @@ function basic_enemy_attributes(){
 		}
 	};
 	
-	this.setup = (health, damage, x, y, map_obj, experience, name) => {
+	this.setup = (health, damage, x, y, map_obj, experience) => {
 		this.fullHealth = health;
 		this.health = health;
 		this.damage = damage;
@@ -145,15 +146,14 @@ function basic_enemy_attributes(){
 	
 	this.takeDamage = (damage) => {
 		this.health = this.health - damage;
-		parseTask("The " + this.n_name + " took " + damage + " points of damage.")
 	};
 }
 
 function slime(){
 	this.attribute = new basic_enemy_attributes();
 	
-	this.setup = (x, y, map_obj, name) => {
-		this.attribute.setup(5, 0.5, x, y, map_obj, 1, name);
+	this.setup = (x, y, map_obj, func, val) => {
+		this.attribute.setup(5, 0.5, x, y, map_obj, 1);
 		this.counter = 0;
 		this.attackCounter = 0;
 	};
@@ -177,13 +177,8 @@ function slime(){
 	};
 	
 	this.takeDamage = (damage) => {
-		this.attackCounter++;
-		if(this.attackCounter % 2 == 0){
-			this.attribute.takeDamage(damage);
-		}
-		if(this.attackCounter > 20){
-			this.attackCounter = 0;
-		}
+		parseTask("You have dealed " + damage + " to Slime.");
+		this.attribute.takeDamage(damage);
 	};
 	
 	this.return_map = () => {
@@ -191,7 +186,7 @@ function slime(){
 	};
 	
 	this.dropexp = () => {
-		parseTask("You killed the " + this.attribute.n_name + ".");
+		parseTask("You killed the Slime.");
 		parseTask("You gained " + this.attribute.dropExp + " XP.");
 		return this.attribute.dropExp;
 	};
@@ -203,8 +198,8 @@ function slime(){
 function brawler(){
 	this.attribute = new basic_enemy_attributes();
 	
-	this.setup = (x, y, map_obj, name) => {
-		this.attribute.setup(5, 1, x, y, map_obj, 3, name);
+	this.setup = (x, y, map_obj, func, val) => {
+		this.attribute.setup(5, 1, x, y, map_obj, 2);
 		this.counter = 0;
 		this.attackCounter = 0;
 	};
@@ -228,13 +223,8 @@ function brawler(){
 	};
 	
 	this.takeDamage = (damage) => {
-		this.attackCounter++;
-		if(this.attackCounter % 2 == 0){
-			this.attribute.takeDamage(damage);
-		}
-		if(this.attackCounter > 20){
-			this.attackCounter = 0;
-		}
+		parseTask("You have dealed " + damage + " to Brawler.");
+		this.attribute.takeDamage(damage);
 	};
 	
 	this.return_map = () => {
@@ -242,6 +232,8 @@ function brawler(){
 	};
 	
 	this.dropexp = () => {
+		parseTask("You killed the Brawler.");
+		parseTask("You gained " + this.attribute.dropExp + " XP.");
 		return this.attribute.dropExp;
 	};
 	
@@ -271,7 +263,13 @@ function checkForEnemyStatus(){
 				let x = enemy_cache[i].get_container().attribute.x;
 				let y = enemy_cache[i].get_container().attribute.y;
 				player_rep.experience += enemy_cache[i].get_container().dropexp();
-				translate(orig.return_background_tile(),  10 * x,  10 * y);
+				let renderPromise = new Promise(resolved => {
+					if(!(rendering)){
+						console.log('resolved rendering');
+						resolved();
+					}
+				});
+				renderPromise.then(translate(orig.return_background_tile(),  10 * x,  10 * y));
 				
 				e_map[y][x] = undefined;
 				enemy_cache[i] = undefined;

@@ -13,8 +13,9 @@ function runGame(){
 }
 
 function playerside(){
-	enemyFunctionsAtCurrentMap();
 	checkForEnemyStatus();
+	enemyFunctionsAtCurrentMap();
+	//checkForEnemyStatus();
 	checkPlayerStatus();
 	//console.log('called_user_turn');
 	drawInfo();
@@ -29,8 +30,9 @@ function enemyside(){
 	for(var i = 0; i < map_size; i++){
 		for(var k = 0; k < map_size; k++){
 			if(typeof(check_map[i][k]) != 'undefined'){
-				enemyFunctionsAtCurrentMap();
 				checkForEnemyStatus();
+				enemyFunctionsAtCurrentMap();
+				//checkForEnemyStatus();
 				checkPlayerStatus();
 				drawInfo();
 				map_to_screen(orig);

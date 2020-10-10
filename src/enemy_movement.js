@@ -7,9 +7,9 @@ function enemyFunctionsAtCurrentMap(){
 				let elem = cur_map[i][k];
 				
 				//console.log(elem);
-				
 				elem.get_container().move();
 				elem.get_container().attack();
+				
 			}
 		}
 	}

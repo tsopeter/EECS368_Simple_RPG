@@ -21,7 +21,8 @@
 
 
 function map_to_screen(map_obj){
-	console.log('first_pass_called: ' + first_pass_called);
+	rendering = true;
+	//console.log('first_pass_called: ' + first_pass_called);
 	if(first_pass_called == false){
 		first_pass(orig);
 	}
@@ -45,6 +46,7 @@ function map_to_screen(map_obj){
 	
 	/* mask the current part */
 	player_pass_2();
+	rendering = false;
 	
 }
 

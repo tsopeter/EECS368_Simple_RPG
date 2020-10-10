@@ -7,6 +7,8 @@ function item_attributes(){
 	this.health;
 	this.x;
 	this.y
+	this.prev_x;
+	this.prev_y;
 	
 	this.map_obj;
 	
@@ -74,12 +76,14 @@ function properties(){
 		return 0;
 	};
 	
-	this.setup = (x, y, map_obj, func, cont) => {
+	this.setup = (x, y, map_obj, func, cont, name) => {
 		this.attribute.fullHealth = 0;
 		this.attribute.health = 1;
 		this.cont = cont;
 		this.attribute.x = x;
 		this.attribute.y = y;
+		this.attribute.prev_x = x;
+		this.attribute.prev_y = y;
 		this.attribute.map_obj = map_obj;
 		this.attribute.func = func;
 	};
