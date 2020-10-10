@@ -80,6 +80,11 @@ function map(x, y){
 			if(this.exist != 0){
 				return;
 			}
+			
+			/* do not generate when missing array */
+			if(typeof(this.enemy_store) == 'undefined'){
+				return;
+			}
 		
 			let arg0 = Math.floor(Math.random() * this.enemy_store.length);
 			let free_space = new Array;
