@@ -15,6 +15,10 @@ function userInterfaceSetup(){
 	
 	/* userInfoStorage as a object to handle data */	
 	userInfoStorage = new dataHandler();
+	
+	/* taskInfoStorage as a object to handle tasks */
+	taskInfoStorage = new taskInfo();
+	taskInfoStorage.setup(4);
 }
 
 function drawInfo(){
@@ -26,6 +30,17 @@ function drawInfo(){
 	
 	/* draw to screen */
 	drawUserInfo();
+	drawTasks();
+}
+
+function drawTasks(){
+	userInterfaceCtx.fillStyle = 'white';
+	let x_start = 15;
+	let y_start = 20;
+	
+	for(var i = 0; i < taskInfoStorage.limit; i++){
+		userInterfaceCtx.fillText(taskInfoStorage.return_array()[i], x_start, y_start + (i * 25));
+	}
 }
 
 function backgroundCombine(){

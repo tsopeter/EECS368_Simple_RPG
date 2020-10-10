@@ -17,19 +17,26 @@ function item_attributes(){
 }
 
 function addHealth(health){
+	parseTask("You used a health poition.");
 	if(player_rep.health + health >= player_rep.fullHealth){
+		parseTask("You now have full health.");
 		player_rep.health = player_rep.fullHealth
 	}
 	else{
+		parseTask("You gained " + health + " health points.");
 		player_rep.health += health;
 	}
 }
 
 function giveArmor(armor){
+	parseTask("You obtained a shield.");
+	parseTask("You gained " + armor + " armor points.");
 	player_rep.armor += armor;
 }
 
 function addExp(expr){
+	parseTask("You used a xp potion.");
+	parseTask("You gained " + expr + " xp points.");
 	player_rep.experience += expr;
 }
 

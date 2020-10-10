@@ -119,16 +119,20 @@ function map(x, y){
 
 				/* create a new enemy tile */
 				let temp_enemy = new tiles();
+				
 					
 				/* set behavior object to tile container */
 				//console.log(this.enemy_store[arg0][0]);
 				temp_enemy.set_container(new (this.enemy_store[arg0][1])());
 				
+				/* assign a name to the tile */
+				temp_enemy.set_name((this.enemy_store[arg0][1]).name);
+				
 				let i = free_space[place_random][0];
 				let k = free_space[place_random][1];
 				
 				/* set up the enemy */
-				temp_enemy.get_container().setup(k, i, this);
+				temp_enemy.get_container().setup(k, i, this, (this.enemy_store[arg0][1]).name);
 				
 				/* splice out the space as no longer free */
 				free_space.splice(place_random, 1);

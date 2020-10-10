@@ -22,3 +22,30 @@ function dataHandler(){
 		this.playerFullHealth = fullHealth;
 	};
 }
+
+let taskInfoStorage;
+
+function taskInfo(){
+	this.storageArray;
+	
+	this.limit;
+	
+	this.setup = (limit) => {
+		this.limit = limit;
+		this.storageArray = new Array;
+		for(var i = 0; i < this.limit; i++){
+			this.storageArray.push('...');
+		}
+	};
+	
+	this.update = (arg) => {
+		this.storageArray.push(arg);
+		if(this.storageArray.length > this.limit){
+			this.storageArray.shift();
+		}
+	};
+	
+	this.return_array = () => {
+		return (this.storageArray).map(x => x);
+	};
+}

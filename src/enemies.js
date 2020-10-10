@@ -20,6 +20,8 @@ function basic_enemy_attributes(){
 	
 	this.dropExp;
 	
+	this.n_name;
+	
 	this.active = () => {
 		if(this.state == 1){
 			this.state = 0;
@@ -114,7 +116,7 @@ function basic_enemy_attributes(){
 		}
 	};
 	
-	this.setup = (health, damage, x, y, map_obj, experience) => {
+	this.setup = (health, damage, x, y, map_obj, experience, name) => {
 		this.fullHealth = health;
 		this.health = health;
 		this.damage = damage;
@@ -122,6 +124,7 @@ function basic_enemy_attributes(){
 		this.y = y;
 		this.map_obj = map_obj;
 		this.dropExp = experience;
+		this.n_name = name;
 	};
 	/*	unused	*/
 	this.die = () => {
@@ -133,14 +136,15 @@ function basic_enemy_attributes(){
 	
 	this.takeDamage = (damage) => {
 		this.health = this.health - damage;
+		parseTask("The " + this.n_name + " took " + damage + " points of damage.")
 	};
 }
 
 function slime(){
 	this.attribute = new basic_enemy_attributes();
 	
-	this.setup = (x, y, map_obj) => {
-		this.attribute.setup(5, 0.5, x, y, map_obj, 1);
+	this.setup = (x, y, map_obj, name) => {
+		this.attribute.setup(5, 0.5, x, y, map_obj, 1, name);
 		this.counter = 0;
 		this.attackCounter = 0;
 	};
@@ -178,6 +182,8 @@ function slime(){
 	};
 	
 	this.dropexp = () => {
+		parseTask("You killed the " + this.attribute.n_name + ".");
+		parseTask("You gained " + this.attribute.dropExp + " XP.");
 		return this.attribute.dropExp;
 	};
 	
@@ -188,8 +194,8 @@ function slime(){
 function brawler(){
 	this.attribute = new basic_enemy_attributes();
 	
-	this.setup = (x, y, map_obj) => {
-		this.attribute.setup(5, 1, x, y, map_obj, 3);
+	this.setup = (x, y, map_obj, name) => {
+		this.attribute.setup(5, 1, x, y, map_obj, 3, name);
 		this.counter = 0;
 		this.attackCounter = 0;
 	};
