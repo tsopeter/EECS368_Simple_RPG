@@ -3,6 +3,7 @@
 */
 
 function item_attributes(){
+	this.fullHealth;
 	this.health;
 	this.x;
 	this.y
@@ -61,6 +62,7 @@ function properties(){
 	};
 	
 	this.setup = (x, y, map_obj, func, cont) => {
+		this.attribute.fullHealth = 0;
 		this.attribute.health = 1;
 		this.cont = cont;
 		this.attribute.x = x;

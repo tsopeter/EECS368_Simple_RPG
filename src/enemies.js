@@ -12,6 +12,7 @@ function basic_enemy_attributes(){
 	this.x;
 	this.y;
 
+	this.fullHealth;
 	this.health;
 	this.damage;
 	
@@ -114,6 +115,7 @@ function basic_enemy_attributes(){
 	};
 	
 	this.setup = (health, damage, x, y, map_obj, experience) => {
+		this.fullHealth = health;
 		this.health = health;
 		this.damage = damage;
 		this.x = x;

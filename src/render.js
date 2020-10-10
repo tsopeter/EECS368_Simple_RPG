@@ -11,7 +11,7 @@ function map_to_screen(map_object){
 		for(var k = 0; k < background[i].length; k++){;
 			translate(background[i][k], shift * k, shift * i);
 			translate(player_mapper[i][k], shift * k, shift * i);
-			translate(enemy[i][k], shift * k, shift *i);
+			enemyTranslate(enemy[i][k], shift * k, shift *i);
 		}
 	}
 }
@@ -37,14 +37,48 @@ function translate(tile_obj, x, y){
 		}
 	}
 }
-/*	unused	*/
-function load_enemy(arr){
-	for(var i = 0; i < map_size; i++){
-		for(var k = 0; k < map_size; k++){
-			if(orig.e_return_map()[i][k] != 'null'){
-				arr[i][k] = getSprite(orig.e_return_map()[i][k]);
+
+function enemyTranslate(tile_obj, x, y){
+	if(typeof(tile_obj) == 'undefined'){
+		return;
+	}
+	let elem = tile_obj.get_tile();
+	let fullHealth = tile_obj.get_container().attribute.fullHealth;
+	let currentHealth = tile_obj.get_container().attribute.health;
+	
+	let percent = 0;
+	if(fullHealth != 0){
+		percent = currentHealth / fullHealth;
+	}
+	let color = undefined;
+	if(percent != 0){
+		if(percent > 0.9){
+			color = 'green';
+		}
+		else if(percent > 0.5){
+			color = 'yellowgreen';
+		}
+		else if(percent > 0.2){
+			color = 'yellow';
+		}
+		else{
+			color = 'red';
+		}
+	}
+	let x_d = x * 5;
+	let y_d = y * 5;
+	let scale = 10;
+	let ctx = document.getElementById('myCanvas').getContext('2d');
+	for(var i = 0; i < elem.length; i++){
+		for(var k = 0; k < elem[i].length; k++){
+			if(i == 0 && k == elem[i].length - 1 && typeof(color) != 'undefined'){
+				ctx.fillStyle = color;
+				ctx.fillRect(x_d + (scale * k), y_d + (scale * i), scale, scale);
+			}
+			else if(typeof(elem[i][k]) != 'undefined'){
+				ctx.fillStyle = elem[i][k];
+				ctx.fillRect(x_d + (scale * k), y_d + (scale * i), scale, scale);
 			}
 		}
 	}
-	return arr;
 }
