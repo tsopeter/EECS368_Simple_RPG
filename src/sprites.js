@@ -45,11 +45,11 @@ const exp_tile = [[undefined, 'darksalmon', 'darksalmon', 'darksalmon', undefine
 		  ['azure', 'aqua', 'aqua', 'aqua', 'azure'],
 		  [undefined, 'azure', 'azure', 'azure', undefined]];
 		  
-const armor_tile = [[undefined, 'gray', 'gray', 'white', undefined],
-		    ['darkgray', 'gray', 'gray', 'gray', 'white' ],
-		    ['darkgray', 'gray', 'gray', 'gray', 'white' ],
-		    ['darkgray', 'gray', 'gray', 'gray', 'white' ],
-		    [undefined, 'darkgray', 'darkgray', 'azure', undefined ]];
+const armor_tile = [[undefined, 'darkslategray', 'gray', 'white', undefined],
+		    ['darkslategray', 'darkslategray', 'darkslategray', 'gray', 'white' ],
+		    ['darkslategray', 'darkslategray', 'darkgray', 'gray', 'white' ],
+		    [undefined, 'darkslategray', 'darkslategray', 'darkslategray', undefined ],
+		    [undefined, 'darkslategray', 'darkslategray', 'azure', undefined ]];
 		       
 function properties(){
 	this.cont;
