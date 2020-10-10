@@ -17,6 +17,7 @@ function playerside(){
 	checkForEnemyStatus();
 	checkPlayerStatus();
 	console.log('called_user_turn');
+	drawInfo();
 	map_to_screen(orig);
 }
 
@@ -31,6 +32,7 @@ function enemyside(){
 				enemyFunctionsAtCurrentMap();
 				checkForEnemyStatus();
 				checkPlayerStatus();
+				drawInfo();
 				map_to_screen(orig);
 				return;
 			}

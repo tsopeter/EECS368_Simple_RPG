@@ -223,7 +223,7 @@ function player(){
 	};
 	
 	this.takeDamage = (damage) => {
-		this.health = this.health - Math.abs(Math.sqrt(this.armor) - damage);
+		this.health = Math.round((this.health - Math.abs(Math.sqrt(this.armor) - damage)) * 10) / 10;
 	};
 	
 	this.x = cur_player_pos_x;
