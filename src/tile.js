@@ -63,11 +63,11 @@ const player_model = [['red', 'red', 'red', 'red', 'red'],
 		    ['red', 'red', 'red', 'red', 'red'],
 		    ['red', undefined, undefined, undefined, 'red']];
 		    
-const tile_brawler = [['red', 'red', 'red', 'red', 'red'],
-		      ['red', 'red', 'red', 'red', 'red'],
-		      ['red', 'red', 'red', 'red', 'red'],
-		      ['red', 'red', 'red', 'red', 'red'],
-		      ['red', 'red', 'red', 'red', 'red']];
+const tile_brawler = [[undefined, 'yellow', 'yellow', undefined, undefined],
+		      ['crimson', 'darkorange', 'red', 'darkorange', 'red'],
+		      ['red', 'white', 'black', 'white', 'red'],
+		      ['darkred', 'crimson', 'red', 'darkred', 'darkred'],
+		      ['black', undefined, undefined, undefined, 'black']];
 			 
 function randomTextureGenerator(color_array, name, n){
 	let output = new tiles();
