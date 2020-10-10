@@ -16,6 +16,23 @@ function map_to_screen(map_object){
 	}
 }
 
+function first_pass(map_object){
+	let background = map_obj.b_return_map();
+	
+	let shift = 10;
+		for(var i = 0; i < background.length; i++){
+			for(var k = 0; k < background[i].length; k++){
+				translate(background[i][k], shift * k, shift * i);
+			}
+		}
+	}
+}
+
+function player_pass(map_object){
+
+}
+
+
 /*	takes a tile object
 /*	translates the following number to a assigned pre-rendered object */
 function translate(tile_obj, x, y){
