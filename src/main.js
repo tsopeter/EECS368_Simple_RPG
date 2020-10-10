@@ -1,10 +1,11 @@
 
 main = function(){
 	console.log("Program start");
-	map_setup();
-	player_rep.setup();
-	map_to_screen(orig);
+	//map_setup();
+	//player_rep.setup();
+	//map_to_screen(orig);
 	
+	runGame();
 
 	console.log("Program End");
 }
@@ -15,9 +16,6 @@ function map_setup(){
 	stoneTile.set_name('stone');
 	stoneTile.set_tile(tile_stone);
 	stoneTile.set_collision(1);
-	
-	nullTile = new tiles();
-	nullTile.set_name('null');
 	
 	playerTile = new tiles();
 	playerTile.set_name('player');
@@ -68,6 +66,26 @@ function map_setup(){
 	
 	addEnemyTile(tileBrawler);
 	
+	
+	/*	generate sprite tiles */
+	let healthTile = new tiles();
+	healthTile.set_name('health_potion');
+	healthTile.set_tile(health_tile);
+	healthTile.set_collision(1);
+	healthTile.set_container(new properties());
+	healthTile.get_container().setup(6, 6, orig, addHealth, 4);
+	
+	addEnemyTile(healthTile);
+	
+	let expTile = new tiles();
+	expTile.set_name('exp_potion');
+	expTile.set_tile(exp_tile);
+	expTile.set_collision(1);
+	expTile.set_container(new properties());
+	expTile.get_container().setup(7, 7, orig, addExp, 4);
+	
+	addEnemyTile(expTile);
+	
 	/*	link map	*/
 	link(orig, map2, 0);
 	link(map2, map3, 0);
@@ -76,6 +94,9 @@ function map_setup(){
 	/* enable any debuggers */
 	enable_attack_button_debug();
 	enable_game_end_button_debug();
+	
+	player_rep.setup();
+	map_to_screen(orig);
 }
 
 function addEnemyTile(tile_object){

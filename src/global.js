@@ -12,11 +12,11 @@ let texture_size = 5;
 
 let stoneTile;
 
-let nullTile;
-
 let playerTile;
 
 let gameFlag = true;
 
 let gameRunFlag = true;
+
+let userTurn = false;
 
