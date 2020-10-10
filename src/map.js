@@ -90,7 +90,7 @@ function map(x, y){
 			let free_space = new Array;
 			for(var i = 0; i < map_size; i++){
 				for(var k = 0; k < map_size; k++){
-					if(!(check_for_valid_step(this.e_map[y_rand][x_rand])) && !(check_for_valid_step(this.b_map[y_rand][x_rand]))){
+					if(!(check_for_valid_step(this.e_map[i][k])) && !(check_for_valid_step(this.b_map[i][k]))){
 						let tuple = new Array;
 						tuple.push(i);
 						tuple.push(k);
