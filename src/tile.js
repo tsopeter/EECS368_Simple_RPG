@@ -57,11 +57,11 @@ const tile_slime = [[undefined, 'aqua', 'aqua', 'aqua', undefined],
 		  ['aqua', 'darkblue', 'blue', 'darkblue', 'darkcyan'],
 		  ['blue', 'blue', 'blue', 'blue', 'blue']];
 		  
-const player_model = [['black', 'black', 'black', 'black', 'black'],
-		    ['black', 'white', 'white', 'white', 'black'],
-		    ['black', 'white', 'black', 'white', 'black'],
-		    ['black', 'white', 'white', 'white', 'black'],
-		    ['black', 'black', 'black', 'black', 'null']];
+const player_model = [['red', 'red', 'red', 'red', 'red'],
+		    ['red', 'aqua', 'azure', 'azure', 'red'],
+		    ['red', 'aqua', 'aqua', 'aqua', 'red'],
+		    ['red', 'red', 'red', 'red', 'red'],
+		    ['red', undefined, undefined, undefined, 'red']];
 		    
 const tile_brawler = [['red', 'red', 'red', 'red', 'red'],
 		      ['red', 'red', 'red', 'red', 'red'],

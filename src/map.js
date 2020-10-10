@@ -7,6 +7,7 @@ function map(x, y){
 		this.x = x;
 		this.y = y;
 		
+		/* check to see if there are enemy tiles */
 		this.exist;
 		
 		/*	holds linked maps */
@@ -92,8 +93,11 @@ function map(x, y){
 					return;
 				}
 			}
-		
+			
+			/* randomly select a starting point of the enemy array */
 			let arg0 = Math.floor(Math.random() * this.enemy_store.length);
+			
+			/* generate all possible free spaces */
 			let free_space = new Array;
 			for(var i = 0; i < map_size; i++){
 				for(var k = 0; k < map_size; k++){
@@ -105,7 +109,8 @@ function map(x, y){
 					}
 				}
 			}
-			console.log(free_space[0]);
+			//console.log(free_space[0]);
+			
 			/* generate the enemies */
 			while(arg0 >= 0){
 				/* set up the enemy */
@@ -137,8 +142,11 @@ function map(x, y){
 				/* add Enemy to map */
 				addEnemyTile(temp_enemy);
 				
+				/* decrement to next enemy */
 				arg0--;
 			};
+			
+			/* set the flag to 1 if there are enemeies */
 			if(arg0 != 0){
 				this.exist = 1;
 			}
@@ -153,7 +161,10 @@ function map(x, y){
 					}
 				}
 			}
+			/* set to no enemy */
 			this.exist = 0;
+			
+			/* generate the enemy */
 			this.generate_enemies();			
 		};		
 }

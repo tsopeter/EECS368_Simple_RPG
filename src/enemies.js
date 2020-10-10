@@ -139,6 +139,7 @@ function slime(){
 	
 	this.setup = (x, y, map_obj) => {
 		this.attribute.setup(5, 0.5, x, y, map_obj, 1);
+		this.counter = 0;
 	};
 	
 	this.attack = () => {
@@ -146,7 +147,13 @@ function slime(){
 	};
 	
 	this.move = () => {
-		this.attribute.move();
+		this.counter++;
+		if(this.counter % 4 == 0){
+			this.attribute.move();
+		}
+		if(this.counter > 20){
+			this.counter = 0;
+		}
 	};
 	
 	this.die = () => {
@@ -164,6 +171,8 @@ function slime(){
 	this.dropexp = () => {
 		return this.attribute.dropExp;
 	};
+	
+	this.counter;
 }
 
 function brawler(){
@@ -180,7 +189,7 @@ function brawler(){
 	
 	this.move = () => {
 		this.counter++;
-		if(this.counter % 2 == 0){
+		if(this.counter % 3 == 0){
 			this.attribute.move();
 		}
 		if(this.counter > 20){
