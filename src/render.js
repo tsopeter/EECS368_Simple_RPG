@@ -30,8 +30,10 @@ function translate(tile_obj, x, y){
 	let ctx = document.getElementById('myCanvas').getContext('2d');
 	for(var i = 0; i < elem.length; i++){
 		for(var k = 0; k < elem[i].length; k++){
-			ctx.fillStyle = elem[i][k];
-			ctx.fillRect(x_d + (scale * k), y_d + (scale * i), scale, scale);
+			if(typeof(elem[i][k]) != 'undefined'){
+				ctx.fillStyle = elem[i][k];
+				ctx.fillRect(x_d + (scale * k), y_d + (scale * i), scale, scale);
+			}
 		}
 	}
 }

@@ -24,8 +24,6 @@ function map(x, y){
 		/*	this is the enemy map */
 		this.e_map;
 		
-		/*	this is the sprites map */
-		this.s_map;
 		
 		/*	give the map object a array */
 		/*	it is a 2d array */
@@ -41,9 +39,6 @@ function map(x, y){
 			this.e_map = xs.map(x => x.map(y => y));
 			};
 		
-		this.s_load_map = (xs) => {
-			this.s_map = xs.map(x => x.map(y => y));
-			};
 		
 		/*	return this map object,
 			mainly used for render.js */
@@ -62,9 +57,6 @@ function map(x, y){
 			return (this.e_map).map(x => x.map(z => z));
 			};
 		
-		this.s_return_map = () => {
-			return (this.s_map).map(x => x.map(y => y));
-			};
 		
 		/*	return the linked maps,
 			maily used for traversal */

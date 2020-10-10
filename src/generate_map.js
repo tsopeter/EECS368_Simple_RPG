@@ -46,7 +46,6 @@ function randomMap(tile_type, type, include_border){
 	/*	generate undefined map for both movement and enemy */
 	output.m_load_map(undefined_map());
 	output.e_load_map(undefined_map());
-	output.s_load_map(undefined_map());
 	
 	return output;
 }
