@@ -35,6 +35,7 @@ function player(){
 		this.health = 20;
 		this.damage = 2;
 		this.armor = 0;
+		this.damageBonus = 0;
 		
 		document.getElementById('health').innerText = 'Health: ' + this.health;
 		document.getElementById('exp').innerText = 'XP: ' + this.experience;
@@ -194,27 +195,27 @@ function player(){
 			console.log(attack_map[this.y - 1][this.x]);
 			if(typeof(attack_map[this.y - 1][this.x]) != 'undefined'){
 				console.log('attacked');
-				attack_map[this.y - 1][this.x].get_container().takeDamage(this.damage);
+				attack_map[this.y - 1][this.x].get_container().takeDamage(this.damage + this.damageBonus);
 			}
 		}
 		if(this.y + 1 < map_size){
 			if(typeof(attack_map[this.y + 1][this.x]) != 'undefined'){
 				console.log('attacked');
-				attack_map[this.y + 1][this.x].get_container().takeDamage(this.damage);
+				attack_map[this.y + 1][this.x].get_container().takeDamage(this.damage + this.damageBonus);
 			}
 		
 		}
 		if(this.x - 1 >= 0){
 			if(typeof(attack_map[this.y][this.x - 1]) != 'undefined'){
 				console.log('attacked');
-				attack_map[this.y][this.x - 1].get_container().takeDamage(this.damage);
+				attack_map[this.y][this.x - 1].get_container().takeDamage(this.damage + this.damageBonus);
 			}
 		
 		}
 		if(this.x + 1 < map_size){
 			if(typeof(attack_map[this.y][this.x + 1]) != 'undefined'){
 				console.log('attacked');
-				attack_map[this.y][this.x + 1].get_container().takeDamage(this.damage);
+				attack_map[this.y][this.x + 1].get_container().takeDamage(this.damage + this.damageBonus);
 			}		
 		}
 		
@@ -222,7 +223,7 @@ function player(){
 	};
 	
 	this.takeDamage = (damage) => {
-		this.health = this.health - damage;
+		this.health = this.health - Math.abs(Math.sqrt(this.armor) - damage);
 	};
 	
 	this.x = cur_player_pos_x;
@@ -236,6 +237,8 @@ function player(){
 	
 	this.itemStorage;
 	this.toolStorage;
+	
+	this.damageBonus;
 	
 	this.levelup = () => {
 		if(this.experience >= this.levelExp){

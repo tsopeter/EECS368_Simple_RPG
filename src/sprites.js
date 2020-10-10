@@ -24,6 +24,10 @@ function addHealth(health){
 	}
 }
 
+function giveSword(){
+
+}
+
 function addExp(expr){
 	player_rep.experience += expr;
 }

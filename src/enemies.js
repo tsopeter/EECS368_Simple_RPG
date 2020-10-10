@@ -140,6 +140,7 @@ function slime(){
 	this.setup = (x, y, map_obj) => {
 		this.attribute.setup(5, 0.5, x, y, map_obj, 1);
 		this.counter = 0;
+		this.attackCounter = 0;
 	};
 	
 	this.attack = () => {
@@ -161,7 +162,13 @@ function slime(){
 	};
 	
 	this.takeDamage = (damage) => {
-		this.attribute.takeDamage(damage);
+		this.attackCounter++;
+		if(this.attackCounter % 2 == 0){
+			this.attribute.takeDamage(damage);
+		}
+		if(this.attackCounter > 20){
+			this.attackCounter = 0;
+		}
 	};
 	
 	this.return_map = () => {
@@ -173,6 +180,7 @@ function slime(){
 	};
 	
 	this.counter;
+	this.attackCounter;
 }
 
 function brawler(){
@@ -181,6 +189,7 @@ function brawler(){
 	this.setup = (x, y, map_obj) => {
 		this.attribute.setup(5, 1, x, y, map_obj, 3);
 		this.counter = 0;
+		this.attackCounter = 0;
 	};
 	
 	this.attack = () => {
@@ -202,7 +211,13 @@ function brawler(){
 	};
 	
 	this.takeDamage = (damage) => {
-		this.attribute.takeDamage(damage);
+		this.attackCounter++;
+		if(this.attackCounter % 2 == 0){
+			this.attribute.takeDamage(damage);
+		}
+		if(this.attackCounter > 20){
+			this.attackCounter = 0;
+		}
 	};
 	
 	this.return_map = () => {
@@ -214,6 +229,7 @@ function brawler(){
 	};
 	
 	this.counter;
+	this.attackCounter;
 }
 
 function enemyUpdate(map_obj, cur_x, cur_y, next_x, next_y){
