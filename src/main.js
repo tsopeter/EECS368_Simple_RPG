@@ -72,10 +72,19 @@ function map_setup(){
 	healthTile.set_name('health_potion');
 	healthTile.set_tile(health_tile);
 	healthTile.set_collision(1);
-	healthTile.set_container(new health());
+	healthTile.set_container(new properties());
 	healthTile.get_container().setup(6, 6, orig, addHealth, 4);
 	
 	addEnemyTile(healthTile);
+	
+	expTile = new tiles();
+	expTile.set_name('exp_potion');
+	expTile.set_tile(exp_tile);
+	expTile.set_collision(1);
+	expTile.set_container(new properties());
+	expTile.get_container().setup(7, 7, orig, addExp, 4);
+	
+	addEnemyTile(expTile);
 	
 	/*	link map	*/
 	link(orig, map2, 0);

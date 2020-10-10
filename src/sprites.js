@@ -19,7 +19,13 @@ function addHealth(health){
 	player_rep.health += health;
 }
 
+function addExp(expr){
+	player_rep.experience += expr;
+}
+
 let healthTile;
+
+let expTile;
 
 const health_tile = [[undefined, 'darksalmon', 'darksalmon', 'darksalmon', undefined],
 		       [undefined, 'azure', 'azure', 'azure', undefined],
@@ -27,8 +33,14 @@ const health_tile = [[undefined, 'darksalmon', 'darksalmon', 'darksalmon', undef
 		       ['azure', 'red', 'red', 'red', 'azure'],
 		       [undefined, 'azure', 'azure', 'azure', undefined]];
 		       
-function health(){
-	this.health;
+const exp_tile = [[undefined, 'darksalmon', 'darksalmon', 'darksalmon', undefined],
+		  [undefined, 'azure', 'azure', 'azure', undefined],
+		  ['azure', 'aqua', 'aqua', 'aqua', 'azure'],
+		  ['azure', 'aqua', 'aqua', 'aqua', 'azure'],
+		  [undefined, 'azure', 'azure', 'azure', undefined]];
+		       
+function properties(){
+	this.cont;
 	this.attribute = new item_attributes();
 	
 	this.move = () => {
@@ -40,12 +52,12 @@ function health(){
 	};
 	
 	this.dropexp = () => {
-		return player_rep.experience;
+		return 0;
 	};
 	
-	this.setup = (x, y, map_obj, func, health) => {
+	this.setup = (x, y, map_obj, func, cont) => {
 		this.attribute.health = 1;
-		this.health = health;
+		this.cont = cont;
 		this.attribute.x = x;
 		this.attribute.y = y;
 		this.attribute.map_obj = map_obj;
@@ -57,7 +69,7 @@ function health(){
 	};
 	
 	this.takeDamage = (x) => {
-		this.attribute.function(this.health);
+		this.attribute.function(this.cont);
 		this.attribute.health = 0;
 	};
 }
