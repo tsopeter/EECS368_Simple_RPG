@@ -25,8 +25,8 @@ function addHealth(health){
 	}
 }
 
-function giveSword(){
-
+function giveArmor(armor){
+	player_rep.armor += armor;
 }
 
 function addExp(expr){
@@ -44,6 +44,12 @@ const exp_tile = [[undefined, 'darksalmon', 'darksalmon', 'darksalmon', undefine
 		  ['azure', 'aqua', 'aqua', 'aqua', 'azure'],
 		  ['azure', 'aqua', 'aqua', 'aqua', 'azure'],
 		  [undefined, 'azure', 'azure', 'azure', undefined]];
+		  
+const armor_tile = [[undefined, 'gray', 'gray', 'white', undefined],
+		    ['darkgray', 'gray', 'gray', 'gray', 'white' ],
+		    ['darkgray', 'gray', 'gray', 'gray', 'white' ],
+		    ['darkgray', 'gray', 'gray', 'gray', 'white' ],
+		    [undefined, 'darkgray', 'darkgray', 'azure', undefined ]];
 		       
 function properties(){
 	this.cont;

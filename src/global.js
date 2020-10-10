@@ -20,3 +20,5 @@ let gameRunFlag = true;
 
 let userTurn = false;
 
+let player_death_alert = true;
+

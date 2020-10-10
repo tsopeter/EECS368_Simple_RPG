@@ -94,6 +94,15 @@ function map_setup(){
 	expTile.set_container(new properties());
 	expTile.get_container().setup(7, 7, orig, addExp, 4);
 	
+	let armorTile = new tiles();
+	armorTile.set_name('armor_shield');
+	armorTile.set_tile(armor_tile);
+	armorTile.set_collision(1);
+	armorTile.set_container(new properties());
+	armorTile.get_container().setup(3, 3, map3, giveArmor, 2);
+	
+	addEnemyTile(armorTile);
+	
 	addEnemyTile(expTile);
 	
 	/*	link map	*/

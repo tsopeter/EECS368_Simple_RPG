@@ -292,8 +292,10 @@ function checkPlayerStatus(){
 	document.querySelector("#level").innerText = "LEVEL: " + player_rep.level;
 	document.querySelector('#health').innerText = 'Health: ' + player_rep.health;
 	document.querySelector('#exp').innerText = 'XP: ' + player_rep.experience;
-	if(player_rep.health <= 0){
+	if(player_rep.health <= 0 && player_death_alert){
 		alert('You died');
 		gameFlag = false;
+		gameRunFlag = false;
+		player_death_alert = false;
 	}
 }
