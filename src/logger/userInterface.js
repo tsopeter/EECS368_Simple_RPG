@@ -19,18 +19,25 @@ function userInterfaceSetup(){
 	/* taskInfoStorage as a object to handle tasks */
 	taskInfoStorage = new taskInfo();
 	taskInfoStorage.setup(4);
+	
+	ov = new override();
 }
 
 function drawInfo(){
-	/* change background */
-	backgroundCombine();
+	if(!(overrideFlag)){
+		/* change background */
+		backgroundCombine();
 
-	/* retreive information */
-	retreiveData();
-	
-	/* draw to screen */
-	drawUserInfo();
-	drawTasks();
+		/* retreive information */
+		retreiveData();
+		
+		/* draw to screen */
+		drawUserInfo();
+		drawTasks();
+	}
+	else{
+		ov.useFunction();
+	}
 }
 
 function drawTasks(){
@@ -77,7 +84,7 @@ function drawBackground(){
 }
 
 function retreiveData(){
-	userInfoStorage.update(player_rep.health, player_rep.damage, player_rep.armor, player_rep.experience, player_rep.level, player_rep.fullHealth, player_rep.levelExp);
+	userInfoStorage.update(player_rep.health, player_rep.damage, player_rep.armor, player_rep.experience, player_rep.level, player_rep.fullHealth, player_rep.levelExp, player_rep.coins);
 }
 
 function drawHealthBar(percent, color){
@@ -126,6 +133,9 @@ function drawUserInfo(){
 	
 	/* draw the current level */
 	userInterfaceCtx.fillText("Level: " + userInfoStorage.playerLevel, 15, 250);
+	
+	/* draw the number of coins */
+	userInterfaceCtx.fillText("Coins: " + userInfoStorage.playerCoins, 15, 275);
 	
 	
 }

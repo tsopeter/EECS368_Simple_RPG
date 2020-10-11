@@ -8,6 +8,8 @@
 // format [[tile, object, function, val], [tile, object, function, val]]
 let enemyTypes = [[tile_slime, slime, 0, 0], [tile_slime, slime, 0, 0], [tile_brawler, brawler, 0, 0], [health_tile, properties, addHealth, 4]];
 
+let npcTypes = [[tile_shopkeeper, npc_properties, shop, 0],[tile_slime, slime, 0, 0]];
+
 function basic_enemy_attributes(){
 	this.x;
 	this.y;
@@ -188,6 +190,9 @@ function slime(){
 	this.dropexp = () => {
 		parseTask("You killed the Slime.");
 		parseTask("You gained " + this.attribute.dropExp + " XP.");
+		
+		player_rep.coins += Math.floor(Math.random() * 10);
+		
 		return this.attribute.dropExp;
 	};
 	

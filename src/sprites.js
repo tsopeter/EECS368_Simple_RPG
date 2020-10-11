@@ -15,7 +15,7 @@ function item_attributes(){
 	this.func;
 	this.function = (x) => {
 		this.func(x);
-	}
+	};
 }
 
 function addHealth(health){

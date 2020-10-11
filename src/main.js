@@ -73,7 +73,7 @@ function map_setup(){
 	orig.load_enemy(enemyTypes);
 	orig.checkEnemyExist();
 	
-	map4.load_enemy(enemyTypes);
+	map4.load_enemy(npcTypes);
 	map4.checkEnemyExist();
 
 	

@@ -1,7 +1,11 @@
 let userInterfaceCanvas;
 let userInterfaceCtx;
 
+let overrideFlag = false;
+
 let userInfoStorage;
+
+let ov;
 
 function dataHandler(){
 	this.playerHealth;
@@ -11,8 +15,9 @@ function dataHandler(){
 	this.playerExp;
 	this.playerLevel;
 	this.playerLevelXP;
+	this.playerCoins;
 	
-	this.update = (health, attack, armor, exp, level, fullHealth, xp) => {
+	this.update = (health, attack, armor, exp, level, fullHealth, xp, coins) => {
 		this.playerHealth = health;
 		this.playerAttack = attack;
 		this.playerArmor = armor;
@@ -20,6 +25,7 @@ function dataHandler(){
 		this.playerLevelXP = xp;
 		this.playerLevel = level;
 		this.playerFullHealth = fullHealth;
+		this.playerCoins = coins;
 	};
 }
 

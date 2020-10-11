@@ -12,6 +12,8 @@ function player(){
 		this.levelExp = 10;
 		this.experience = 0;
 		
+		this.coins = 0;
+		
 		/*	set all tiles to null tiles except cur */
 		let primary_array = new Array;
 		for(var i = 0; i < map_size; i++){
@@ -39,8 +41,8 @@ function player(){
 		this.armor = 0;
 		this.damageBonus = 0;
 		
-		document.getElementById('health').innerText = 'Health: ' + this.health;
-		document.getElementById('exp').innerText = 'XP: ' + this.experience;
+		//document.getElementById('health').innerText = 'Health: ' + this.health;
+		//document.getElementById('exp').innerText = 'XP: ' + this.experience;
 		orig.m_load_map(primary_array);
 	};
 	
@@ -252,6 +254,8 @@ function player(){
 	
 	this.damageBonus;
 	
+	this.coins;
+	
 	this.levelup = () => {
 		if(this.experience >= this.levelExp){
 			this.level++;
@@ -301,9 +305,9 @@ function check_for_valid_step(textureElement){
 function checkPlayerStatus(){
 	/* update viewport */
 	player_rep.levelup();
-	document.querySelector("#level").innerText = "LEVEL: " + player_rep.level;
-	document.querySelector('#health').innerText = 'Health: ' + player_rep.health;
-	document.querySelector('#exp').innerText = 'XP: ' + player_rep.experience;
+	//document.querySelector("#level").innerText = "LEVEL: " + player_rep.level;
+	//document.querySelector('#health').innerText = 'Health: ' + player_rep.health;
+	//document.querySelector('#exp').innerText = 'XP: ' + player_rep.experience;
 	if(player_rep.health <= 0 && player_death_alert){
 		alert('You died');
 		gameFlag = false;
